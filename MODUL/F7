@@ -56,8 +56,12 @@ def skemaasc(datagame,atr): #Memproses skema ascending (Menurun)
         for Pass in range(1, banyak_baris-1):
             IMin = Pass
             for i in range(Pass+1,banyak_baris):
-                if float(datagame[i][column]) < float(datagame[IMin][column]):
-                    IMin=i
+                if atr == "": #sorting berdasarkan ID
+                    if datagame[i][column] < datagame[IMin][column]:
+                        IMin=i
+                else:#Sorting berdasarkan harga atau tahun    
+                    if float(datagame[i][column]) < float(datagame[IMin][column]):
+                        IMin=i
             Temp = datagame[IMin]
             datagame[IMin] = datagame[Pass]
             datagame[Pass] = Temp

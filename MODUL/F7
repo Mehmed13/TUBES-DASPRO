@@ -69,12 +69,9 @@ def skemaasc(datagame,atr): #Memproses skema ascending (Menurun)
 def cetaklist(datagame,banyak_kolom, banyak_baris):
     #Membentuk list panjang maks masing-masing kolom untuk format
     panjang_makskolom = [0 for i in range(banyak_kolom)]
-    print(datagame)
     for i in range(banyak_kolom):
         panjang_isikolom = [0 for i in range(banyak_baris)]
-        print(banyak_baris,banyak_kolom)
         for j in range(banyak_baris):
-            print(j,i)
             panjang_isikolom[j] = length(datagame[j][i])
         panjang_makskolom[i] = maks(panjang_isikolom)+2 #1 whitespace sebelum dan sesudah isi kolom panjang maks
     
@@ -152,6 +149,3 @@ if __name__ == "__main__":
             print("Skema sorting tidak valid!")
             skema_valid = False
         print(">>>")
-
-
-

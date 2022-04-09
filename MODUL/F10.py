@@ -114,3 +114,4 @@ else: #id_game != "" and tahunrilis != ""
         print('Tidak ada game pada inventory-mu yang memenuhi kriteria')
     else:
         cetaklist(datasearch_duaparameter, banyak_kolom_gamecsv, semua_sesuai+1) 
+print(">>>")

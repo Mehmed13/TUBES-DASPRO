@@ -9,14 +9,14 @@ def hitung_kolom(listgame): #Menghitung jumlah kolom yang ada pada file csv
         break
     return (banyak_kolom+1) #jumlah kolom = jumlah ',' + 1
 
-def pecah_csv(listgame): #Mengubah data menjadi bentuk matriks data
+def pecah_csv(listgame, datagame): #Mengubah data menjadi bentuk matriks data
     bariske = 0 #variabel indeks baris 
     for baris in listgame:
         #inisiasi
         kolom = 0 #variabel indeks kolom
         isikolom = "" 
         for i in range(length(baris)): #Proses split 
-            if baris[i] == ',':
+            if baris[i] == ',' or baris[i] == ";":
                 datagame[bariske][kolom] = isikolom
                 isikolom = ""
                 kolom+=1
@@ -66,12 +66,15 @@ def skemaasc(datagame,atr): #Memproses skema ascending (Menurun)
             datagame[IMin] = datagame[Pass]
             datagame[Pass] = Temp
     return datagame
-def cetaklist(datagame):
+def cetaklist(datagame,banyak_kolom, banyak_baris):
     #Membentuk list panjang maks masing-masing kolom untuk format
     panjang_makskolom = [0 for i in range(banyak_kolom)]
+    print(datagame)
     for i in range(banyak_kolom):
         panjang_isikolom = [0 for i in range(banyak_baris)]
+        print(banyak_baris,banyak_kolom)
         for j in range(banyak_baris):
+            print(j,i)
             panjang_isikolom[j] = length(datagame[j][i])
         panjang_makskolom[i] = maks(panjang_isikolom)+2 #1 whitespace sebelum dan sesudah isi kolom panjang maks
     
@@ -119,31 +122,36 @@ def jumlah_elmt(larik): #Menghitung jumlahan seluruh elemen array numerik
         jumlah+=i
     return jumlah
 
-baca = open("game.csv","r") 
-listgame = baca.readlines()        #Penyimpanan isi file pada variabel
-banyak_baris = hitung_baris(listgame)
-banyak_kolom = hitung_kolom(listgame)
-datagame = [["d" for i in range(banyak_kolom)] for j in range(banyak_baris)] 
-datagame = pecah_csv(listgame)
-# Data Kolom
-# ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
-baca.close()
-print(">>> list_game_toko")
-skema_valid = False #inisiasi input tak valid
 
 
-while(not skema_valid): #validasi input
+if __name__ == "__main__":  
+    baca = open("game.csv","r") 
+    listgame = baca.readlines()        #Penyimpanan isi file pada variabel
+    banyak_baris = hitung_baris(listgame)
+    banyak_kolom = hitung_kolom(listgame)
+    datagame = [["d" for i in range(banyak_kolom)] for j in range(banyak_baris)] 
+    datagame = pecah_csv(listgame, datagame)
+    # Data Kolom
+    # ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
+    baca.close()
+    print(">>> list_game_toko")    
+    
+    skema_valid = False #inisiasi input tak valid
+    while(not skema_valid): #validasi input
     
     #Sistem tidak case-sensitive 
-    skema_valid = True
-    skema = input('Skema sorting: ').lower()
-    if skema == "tahun+" or skema == "harga+" or skema=="":
-        datagame = skemaasc(datagame, skema)
-        cetaklist(datagame)
-    elif skema == "tahun-" or skema == "harga-":
-        datagame = skemadsc(datagame, skema)
-        cetaklist(datagame)
-    else:
-        print("Skema sorting tidak valid!")
-        skema_valid = False
-    print(">>>")
+        skema_valid = True
+        skema = input('Skema sorting: ').lower()
+        if skema == "tahun+" or skema == "harga+" or skema=="":
+            datagame = skemaasc(datagame, skema)
+            cetaklist(datagame, banyak_kolom, banyak_baris)
+        elif skema == "tahun-" or skema == "harga-":
+            datagame = skemadsc(datagame, skema)
+            cetaklist(datagame, banyak_kolom, banyak_baris)
+        else:
+            print("Skema sorting tidak valid!")
+            skema_valid = False
+        print(">>>")
+
+
+

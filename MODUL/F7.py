@@ -16,11 +16,11 @@ def pecah_csv(listgame, datagame): #Mengubah data menjadi bentuk matriks data
         kolom = 0 #variabel indeks kolom
         isikolom = "" 
         for i in range(length(baris)): #Proses split 
-            if baris[i] == ',' or baris[i] == ";":
+            if baris[i] == ";":
                 datagame[bariske][kolom] = isikolom
                 isikolom = ""
                 kolom+=1
-            elif baris[i] ==' ' and baris[i-1] == ',': #spasi setelah tanda koma diabaikan
+            elif baris[i] ==' ' and baris[i-1] == ';': #spasi setelah tanda koma diabaikan
                 continue
             elif baris[i]== '\n':
                 break

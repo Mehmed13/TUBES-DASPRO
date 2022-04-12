@@ -33,6 +33,7 @@ def search(datagame, parameter, isi):
     return datasearch
 
 def carigame_toko():
+    global banyak_baris, banyak_kolom
     baca = open("game.csv","r") 
     listgame = baca.readlines()        #Penyimpanan isi file pada variabel
     banyak_baris = hitung_baris(listgame)

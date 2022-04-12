@@ -116,11 +116,3 @@ while True:
     if cek_seri(): #pengecekan apakah game berakhir seri
         print("Seri. Tidak ada yang menang.")
         break
-
-    
-
-
-
-        
-
-

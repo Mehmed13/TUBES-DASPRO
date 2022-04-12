@@ -1,33 +1,35 @@
 #Asumsi data pada file tidak mengandung ',' di dalamnya. ',' hanya untuk memisahkan kolom
+def split(list, delimiter):
+    arr = []
+    temp =""
+    for char in list:
+        if char == delimiter:
+            arr += [temp]
+            temp =""
+        else: 
+            temp+= char
+    arr+= [temp]
+    return arr
+
+def delete(x, data):
+    data_del = ""
+    for c in data:
+        if c != x:
+            data_del += c
+    return data_del
 
 def hitung_kolom(listgame): #Menghitung jumlah kolom yang ada pada file csv
     banyak_kolom = 0
     for baris in listgame:
         for huruf in baris:
-            if huruf == ",": #jika ditemukan tanda ',', berarti terjadi pergantian kolom
+            if huruf == ";": #jika ditemukan tanda ',', berarti terjadi pergantian kolom
                 banyak_kolom+=1
         break
     return (banyak_kolom+1) #jumlah kolom = jumlah ',' + 1
 
 def pecah_csv(listgame, datagame): #Mengubah data menjadi bentuk matriks data
-    bariske = 0 #variabel indeks baris 
-    for baris in listgame:
-        #inisiasi
-        kolom = 0 #variabel indeks kolom
-        isikolom = "" 
-        for i in range(length(baris)): #Proses split 
-            if baris[i] == ";":
-                datagame[bariske][kolom] = isikolom
-                isikolom = ""
-                kolom+=1
-            elif baris[i] ==' ' and baris[i-1] == ';': #spasi setelah tanda koma diabaikan
-                continue
-            elif baris[i]== '\n':
-                break
-            else:
-                isikolom+=baris[i] #konkantenasi isi kolom
-        datagame[bariske][kolom] = isikolom #Pengisian elemen matriks
-        bariske +=1
+    for i in range(hitung_baris(listgame)):
+        datagame[i] = split(delete("\n",listgame[i]), ";")
     return datagame
 def skemadsc(datagame,atr): #Memproses skema descending (Menurun)
     if atr == "tahun-":
@@ -149,3 +151,6 @@ if __name__ == "__main__":
             print("Skema sorting tidak valid!")
             skema_valid = False
         print(">>>")
+
+
+

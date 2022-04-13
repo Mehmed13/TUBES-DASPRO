@@ -1,3 +1,4 @@
+# F11 - Mencari Game di Toko dari ID, Nama Game, Harga, Kategori dan Tahun Rilis
 from F7 import *
 
 def search(datagame, parameter, isi):

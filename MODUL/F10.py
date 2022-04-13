@@ -1,3 +1,4 @@
+# F10 - Mencari Game yang dimiliki dari ID dan tahun rilis
 from F7 import *
 
 #Ceritanya di program asli, udah ada user id
@@ -5,7 +6,7 @@ user_id = 'ayam123'
 
 def carigame_inventory():
     #Collect data game id yg dimiliki user
-    baca = open("Kepemilikan.csv","r") 
+    baca = open("kepemilikan.csv","r") 
     listKepemilikan = baca.readlines()        #Penyimpanan isi file pada variabel
     banyak_baris = hitung_baris(listKepemilikan)
     banyak_kolom = hitung_kolom(listKepemilikan)

@@ -1,21 +1,3 @@
-# File untuk menyimpan data csv menjadi sebuah matriks
-# matriks = []
-
-
-# def simpenmatriks(file):
-#     with open(file, "r+") as f:
-#         f.seek(0)
-#         lines = f.read().splitlines()
-#         for word in lines:
-#             x = word.split(",")
-#             matriks.append(x)
-#     return matriks
-# print(matriks)
-
-# MatriksSemesta = simpenmatriks("users.csv")
-
-#matriks pake fungsi fadil
-
 def hitung_baris(listgame):
     banyak_baris = 0
     for baris in listgame:
@@ -59,14 +41,15 @@ def pecah_csv(listgame, datagame): #Mengubah data menjadi bentuk matriks
 
 
 #MENGUBAH DATA FILE CSV MENJADI MATRIKS
-baca = open("game.csv","r") 
-listgame = baca.readlines()
-banyak_baris = hitung_baris(listgame)
-banyak_kolom = hitung_kolom(listgame)
+def load(nama_file):
+    global datagame, banyak_baris, banyak_kolom
+    baca = open(nama_file,"r") 
+    listgame = baca.readlines()
+    banyak_baris = hitung_baris(listgame)
+    banyak_kolom = hitung_kolom(listgame)
 
-datagame = [["d" for i in range(banyak_kolom)] for j in range(banyak_baris)] 
-datagame = pecah_csv(listgame, datagame)
-    # Data Kolom
-    # ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
-baca.close()
-
+    datagame = [["d" for i in range(banyak_kolom)] for j in range(banyak_baris)] 
+    datagame = pecah_csv(listgame, datagame)
+        # Data Kolom
+        # ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
+    baca.close()

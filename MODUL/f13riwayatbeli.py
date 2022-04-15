@@ -19,15 +19,18 @@ for i in range(banyak_baris):
     if datariwayat[i][3] == user_id:
         banyak_game+=1
 
-# inisialisasi matriks data riwayat yang sesuai dengan user
-datariwayatuser = [["d" for i in range(banyak_kolom-1)] for j in range(banyak_game+1)]
+if banyak_game == 0:
+    print("Maaf, kamu tidak ada riwayat pembelian game. Ketik perintah beli_game untuk membeli.")
+else:
+    # inisialisasi matriks data riwayat yang sesuai dengan user
+    datariwayatuser = [["d" for i in range(banyak_kolom-1)] for j in range(banyak_game+1)]
 
-# ambil data riwayat yang sesuai dengan user id
-indeks = 1
-for i in range(banyak_baris):
-    datariwayatuser[0] = datariwayat[0] # header
-    if datariwayat[i][3] == user_id:
-        datariwayatuser[indeks] = datariwayat[i]
-        indeks+=1
+    # ambil data riwayat yang sesuai dengan user id
+    indeks = 1
+    for i in range(banyak_baris):
+        datariwayatuser[0] = datariwayat[0] # header
+        if datariwayat[i][3] == user_id:
+            datariwayatuser[indeks] = datariwayat[i]
+            indeks+=1
 
-cetaklist(datariwayatuser,banyak_kolom-1,banyak_game+1)
+    cetaklist(datariwayatuser,banyak_kolom-1,banyak_game+1)

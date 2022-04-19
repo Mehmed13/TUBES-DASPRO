@@ -28,10 +28,7 @@ def skemaasc(datagame,banyak_baris,atr): #Memproses skema ascending (Menurun)
         for Pass in range(1, banyak_baris-1):
             IMin = Pass
             for i in range(Pass+1,banyak_baris):
-                if atr == "": #sorting berdasarkan ID
-                    if datagame[i][column] < datagame[IMin][column]:
-                        IMin=i
-                else:#Sorting berdasarkan harga atau tahun    
+                if atr != "":#Sorting berdasarkan harga atau tahun    
                     if float(datagame[i][column]) < float(datagame[IMin][column]):
                         IMin=i
             Temp = datagame[IMin]
@@ -39,10 +36,9 @@ def skemaasc(datagame,banyak_baris,atr): #Memproses skema ascending (Menurun)
             datagame[Pass] = Temp
     return datagame
 
-def list_game_toko(datagame):  
-    print(">>> list_game_toko")    
+def list_game_toko(datagame):    
     banyak_baris = length(datagame)
-    banyak_kolom = hitung_kolom(datagame)
+    banyak_kolom = length(datagame[0])
     skema_valid = False #inisiasi input tak valid
     while(not skema_valid): #validasi input
     
@@ -50,15 +46,12 @@ def list_game_toko(datagame):
         skema_valid = True
         skema = input('Skema sorting: ').lower()
         if skema == "tahun+" or skema == "harga+" or skema=="":
-            datagame = skemaasc(datagame, skema)
+            datagame = skemaasc(datagame, banyak_baris, skema)
             cetakdata(datagame, banyak_kolom, banyak_baris)
         elif skema == "tahun-" or skema == "harga-":
-            datagame = skemadsc(datagame, skema)
+            datagame = skemadsc(datagame, banyak_baris, skema)
             cetakdata(datagame, banyak_kolom, banyak_baris)
         else:
             print("Skema sorting tidak valid!")
             skema_valid = False
         print(">>>")
-
-
-

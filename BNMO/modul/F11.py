@@ -32,10 +32,9 @@ def search(datagame, parameter, isi, banyak_baris, banyak_kolom):
                 indeks += 1
     return datasearch
 
-def carigame_toko(datagame):
+def search_game_at_store(datagame):
     banyak_baris = length(datagame)
-    banyak_kolom = hitung_kolom(datagame)
-    print(">>> search_game_at_store")
+    banyak_kolom = length(datagame[0])
     #Input parameter
     id_game = input("Masukkan ID Game: ")
     nama_game = input("Masukkan Nama Game: ")
@@ -90,6 +89,3 @@ def carigame_toko(datagame):
     else:
         cetakdata(datasearch_final,banyak_kolom,banyakbaris_final+1)                     
     print(">>>")
-
-if __name__ == "__main__":
-    carigame_toko()

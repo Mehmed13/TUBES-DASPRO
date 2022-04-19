@@ -1,8 +1,11 @@
-from ast import Return
 import os
 #FUNGSI CEK KEBERADAAN FOLDER
-def isFolderExist(foldername):
-    return os.path.isdir(foldername)
+def checkFolder(folderName): # membuat function check folder
+	for root in os.walk(folderName): # mengecek list folder yang ada di dalam "folderName"
+		if root[0] == folderName: # Jika root index 0 (nama folder) sama dengan "folderName"
+			return True # return True
+		else: # else
+			return False # return False
 
 #FUNGSI MENCARI NILAI MAKS PADA ARRAY
 def maks(larik): #Menghitung nilai maksimum suatu array
@@ -90,9 +93,12 @@ def cetakdata(datagame,banyak_kolom, banyak_baris):
                     print(" ", end='')
                 print('|',end='')
         if i == 0:
-            for j in range(length(panjang_makskolom)+banyak_kolom+1): #Batas antara header dan isi tabel
-                print("_",end="")
-            print()
+            for j in range(banyak_kolom): #Batas antara header dan isi tabel
+                for k in range(panjang_makskolom[j]):
+                    print("_",end="")
+            for j in range(banyak_kolom-1):
+                print("_", end="")
+            print("___")
             
         nomor += 1
 
@@ -103,4 +109,10 @@ def cetakdata(datagame,banyak_kolom, banyak_baris):
 # ID Game | ID User
 
 # Data Kolom game.csv
- # ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
+# ID | NAMA | Harga | Kategori | Tahun Rilis | Stok
+
+# Data Kolom user.csv
+# ID | Username | Nama | Password | Role | Saldo
+
+# Data Kolom riwayat.csv
+# GAME ID | Nama | Harga | User ID | Tahun Beli

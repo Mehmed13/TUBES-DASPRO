@@ -1,6 +1,6 @@
 from modul.pecah import *
 
-def carigame_inventory(datakepemilikan, datagame, user_id):
+def search_my_game(datakepemilikan, datagame, user_id):
     #proses datakepemilikan
     banyak_baris = length(datakepemilikan)
 
@@ -18,14 +18,14 @@ def carigame_inventory(datakepemilikan, datagame, user_id):
 
     #proses datagame
     banyak_baris_gamecsv = length(datagame)
-    banyak_kolom_gamecsv = hitung_kolom(datagame)
+    banyak_kolom_gamecsv = length(datagame[0])
 
     #pengambilan data game yang dimiliki user
     datagameuser = [['d' for i in range(banyak_kolom_gamecsv)] for j in range(banyak_game+1)] #inisiasi matriks data game yang dimiliki user
 
     #Pengisian data game yang dimiliki user
     indeks = 1 #penanda indeks
-    for i in range(banyak_baris):
+    for i in range(banyak_baris_gamecsv):
         datagameuser[0] = datagame[0]   #header
         for j in range(banyak_game):#indexing untuk list_gameid
             if datagame[i][0] == list_gameid[j]:
@@ -33,7 +33,6 @@ def carigame_inventory(datakepemilikan, datagame, user_id):
                 indeks += 1
 
     #input parameter searching
-    print(">>> search_my_game")
     id_game = input("Masukkan ID Game: ")
     tahunrilis = input("Masukkan Tahun Rilis Game: ")
 

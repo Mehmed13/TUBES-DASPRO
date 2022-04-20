@@ -55,6 +55,7 @@ def delete(x, data):
 #FUNGSI MENAMBAH BARIS BARU PADA MATRIKS
 def append(list, e):
     list += [e]
+    return list
 # FUNGSI MENGUBAH DATA FILE CSV MENJADI MATRIKS
 def csv_to_matrix(foldername,filename):
     baca = open(f"{foldername}\\{filename}","r") 

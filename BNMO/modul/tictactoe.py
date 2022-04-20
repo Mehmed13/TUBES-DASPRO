@@ -111,18 +111,10 @@ def tictactoe():
         papan[y-1][x-1] = "O" #pengubahan papan
         
         if cek_menang("O"):# cek kemenangan "O"
-            print('Pemain "X" menang.')
+            print('Pemain "O" menang.')
             break
         tampilkan_papan()
 
         if cek_seri(): #pengecekan apakah game berakhir seri
             print("Seri. Tidak ada yang menang.")
             break
-
-        
-
-
-
-        
-
-

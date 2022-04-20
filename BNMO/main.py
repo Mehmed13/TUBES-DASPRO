@@ -99,11 +99,16 @@ if __name__ == "__main__":
                     print("Maaf Anda harus menjadi user untuk melakukan hal tersebut.")
                 print()
                 cmd = input(">>> Masukkan Command: ")
+            elif(cmd == "riwayat"):
+                riwayat(datariwayatUTAMA,user_id)
+                print()
+                cmd = input(">>> Masukkan Command: ")
             elif(cmd == "exit"):
-                end=True 
+                end=True
             else:
                 print("Maaf command yang anda masukkan tidak tersedia pada aplikasi BNMO!")
                 cmd = input(">>> Masukkan Command: ")
-        print("Terimakasih telah berkunjung ke BNMO!")
+        print("Terima kasih telah berkunjung ke BNMO!")
     else:
         print(f'Folder "{args.foldername}" tidak ditemukan.')
+

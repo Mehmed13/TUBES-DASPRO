@@ -37,14 +37,13 @@ def search_my_game(datakepemilikan, datagame, user_id):
     tahunrilis = input("Masukkan Tahun Rilis Game: ")
 
     #searching
+    print('Daftar game pada inventory yang memenuhi kriteria: ')
     if id_game == "" and tahunrilis == "":#tanpa parameter
-        print('Daftar game pada inventory yang memenuhi kriteria: ')
         if banyak_game == 0:
             print('Tidak ada game pada inventory-mu yang memenuhi kriteria')
         else:    
             cetakdata(datagameuser,banyak_kolom_gamecsv,banyak_game+1)
     elif id_game != "" and tahunrilis == "": #searching berdasarkan game id
-        print('Daftar game pada inventory yang memenuhi kriteria: ')
         gameid_sesuai = 0
         for i in range(1,banyak_game+1): #mencari banyaknya game id yang memenuhi
             if datagameuser[i][0] == id_game:
@@ -86,7 +85,7 @@ def search_my_game(datakepemilikan, datagame, user_id):
         datasearch_duaparameter[0]=datagameuser[0] #header
         indeks = 1 #penanda indeks   
         for i in range(1,banyak_game+1):
-            if datagameuser[i][4] == id_game:
+            if datagameuser[i][0] == id_game:
                 datasearch_duaparameter[indeks] =  datagameuser[i] #pengisian datasearch
                 indeks+=1
         if semua_sesuai == 0:

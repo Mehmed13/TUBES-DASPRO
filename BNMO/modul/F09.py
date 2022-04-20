@@ -26,15 +26,24 @@ def list_game(datagame, datakepemilikan, users_id):
     if (banyak_game == 0):
         print("Maaf, kamu belum membeli game. Ketik perintah beli_game untuk beli.")
     else:
-        lihatgame = [["" for i in range(banyak_kolom)] for j in range(banyak_game+1)]
+        lihatgame = [["" for i in range(banyak_kolom-1)] for j in range(banyak_game+1)]
             # Data Kolom
             #ID Game | Nama | Kategori | Tahun | Harga
-        lihatgame[0] = datagame[0] #header
+        indeks_kolom = 0
+        for i in range (banyak_kolom):
+            if i != 5:
+                lihatgame[0][indeks_kolom] = datagame[0][i] #header
+                indeks_kolom += 1
+        
         daftar = 1
         for i in range(1, banyak_game+1):
             for j in range(banyak_baris_game):
                 if (datagame[j][0] == list_gameid[i-1]):
-                    lihatgame[daftar]= datagame[j]
+                    indeks_kolom = 0
+                    for k in range (banyak_kolom):
+                        if k != 5:
+                            lihatgame[daftar][indeks_kolom]= datagame[j][k]
+                            indeks_kolom += 1
                     daftar = daftar + 1
         print("Daftar Game:")
-        cetakdata(lihatgame, banyak_kolom,banyak_game+1)
+        cetakdata(lihatgame, banyak_kolom-1,banyak_game+1)

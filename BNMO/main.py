@@ -1,4 +1,3 @@
-from modul.pecah import *
 from modul.F03 import *
 from modul.F04 import *
 from modul.F05 import *
@@ -12,7 +11,9 @@ from modul.F12 import *
 from modul.F13 import *
 from modul.F14 import *
 from modul.F16 import *
+from modul.pecah import *
 from modul.tictactoe import *
+from modul.kerangajaib import *
 
 
 import argparse
@@ -100,7 +101,25 @@ if __name__ == "__main__":
                 print()
                 cmd = input(">>> Masukkan Command: ")
             elif(cmd == "riwayat"):
-                riwayat(datariwayatUTAMA,user_id)
+                if (role == "user"):
+                    riwayat(datariwayatUTAMA,user_id)
+                else:
+                    print("Maaf Anda harus menjadi user untuk melakukan hal tersebut.")
+                print()
+                cmd = input(">>> Masukkan Command: ")
+            elif (cmd == "topup"):
+                if (role == "admin"):
+                    datauserUTAMA =  topup(datauserUTAMA)
+                else:
+                    print("Maaf, anda tidak memiliki izin untuk menjalankan perintah berikut. Mintalah ke administrator untuk melakukan hal tersebut.")
+                print()
+                cmd = input(">>> Masukkan Command: ")
+            elif(cmd == "tictactoe"):
+                tictactoe()
+                print()
+                cmd = input(">>> Masukkan Command: ")
+            elif(cmd == "kerangajaib"):
+                kerangajaib()
                 print()
                 cmd = input(">>> Masukkan Command: ")
             elif(cmd == "exit"):

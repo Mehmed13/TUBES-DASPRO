@@ -1,5 +1,5 @@
-
-from modul.pecah import * # manggil semua function yang ada di file matriks
+from unicodedata import name
+from modul.pecah import * 
 
 def login(datauser):
     username = input("Masukkan username : ")
@@ -11,7 +11,7 @@ def login(datauser):
             if datauser[i][1] == username and datauser[i][3] == password:
                 login_success = True
                 user_id = datauser[i][0]
-                role = datauser[i][4]
+                user_role = datauser[i][4]
                 break
         if not login_success:
             print("Password atau username salah atau tidak ditemukan")
@@ -19,4 +19,4 @@ def login(datauser):
             password = input ("Masukkan password : ")
 
     print("Halo " + username + "! Selamat datang di Binomo")
-    return [user_id, role]
+    return user_id, user_role

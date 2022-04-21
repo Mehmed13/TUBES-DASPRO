@@ -140,4 +140,3 @@ if __name__ == "__main__":
         print("Terima kasih telah berkunjung ke BNMO!")
     else:
         print("Maaf, setup tidak sesuai.")
-

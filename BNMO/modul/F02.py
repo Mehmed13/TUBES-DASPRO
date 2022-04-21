@@ -1,15 +1,19 @@
-from matriks import *
+from unicodedata import name
+from modul.pecah import * 
 
-name = input("Masukkan nama : ") # meminta user untuk memasukkan nama
-username = input("Masukkan username : ") # meminta user untuk memasukkan username
-password = input("Masukkan password : ") # meminta user untuk memasukkan password
+def register(datauser):
+    nama = input("Masukkan nama user baru:")
+    username= input("Masukkan username baru:")
+    password= input("Masukkan password:")
 
-result = readFile("users.csv", username) # memanggil fungsi readFile
-# result = False # memanggil fungsi readFile
-
-if result == False: # jika result nya adalah False
-  register("users.csv", username, name, password) # memanggil function insertData
-  print("Username "+ username +" telah berhasil register ke dalam “Binomo”.")
-else: # jika result nya adalah True
-  print("Username "+ username +" sudah terpakai, silakan menggunakan username lain.")
-
+    exist = False   #Perbandingan untuk mengecek apakah username sudah digunakan
+    for baris in datauser:
+        if (baris[1] == username): #untuk mengecek pada tiap baris di kolom [1]
+            exist = True
+            
+    if exist != True: #jika belum ada maka akan register dan memasukkan ke dalam matriks
+        data = [str(max(datauser) + 1), username, nama, password, "User", "0"]
+        datauser += [data]
+        print("Selamat, " + username + " telah berhasil diregistrasikan.")
+    else:
+        print("Maaf,username  telah terpakai.")

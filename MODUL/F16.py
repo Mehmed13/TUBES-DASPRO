@@ -1,21 +1,74 @@
-from matriks import *
+import os
+from unicodedata import name
+from modul.pecah import * 
 
-def save():
-    folderName = input("Masukkan nama folder penyimpanan : ")
+def save(MATRIKS_GAME, MATRIKS_KEPEMILIKAN, MATRIKS_RIWAYAT, MATRIKS_USER):
+    while(True):
+        userinput = input("Masukkan nama folder penyimpanan: ")
 
-    result = checkFolder(folderName) # panggil checkFolder yang ada di file matriks
-    if result != True: # melakukan pengecekan. Jika folder belum ada, maka ...
-        os.mkdir(folderName) # create folder nya
-        
-        # panggil function create file excel
-        register(folderName+"/users.csv", "abc", "abc", "abc") #example
-    else:
-        resultCheck = checkFile(folderName, "users.csv") # check file udah ada atau belum
-        if resultCheck == False:
-            register(folderName+"/users.csv", "abc", "abc", "abc") #example
+        if (len(userinput) == 0):
+            print("Nama file tidak boleh kosong.") 
         else:
-            os.remove(folderName+"/users.csv") # delete old file
-            register(folderName+"/users.csv", "abc", "abc", "abc") # create a new file
+            temp_dir = os.path.join(os.getcwd(), userinput)
+            if not (os.path.exists(temp_dir)):
+                os.makedirs(temp_dir)
 
-if __name__ == "__main__":
-    save()
+            counter = 0
+            with open(os.path.join(temp_dir, "game.csv"), 'w') as f:
+                for baris in MATRIKS_GAME:
+                    temp = ""
+                    banyak_kolom = 0
+                    for kolom in baris :
+                        banyak_kolom = banyak_kolom + 1
+                    counter=0
+                    for kolom in baris :
+                        if(counter == banyak_kolom -1) :
+                            temp = temp + str(kolom)
+                        else:
+                            temp = temp + str(kolom) + ";"
+                        counter = counter + 1
+                    f.write(temp + '\n')
+            with open(os.path.join(temp_dir, "kepemilikan.csv"), 'w') as f:
+                for baris in MATRIKS_KEPEMILIKAN:
+                    temp = ""
+                    banyak_kolom = 0
+                    for kolom in baris :
+                        banyak_kolom = banyak_kolom + 1
+                    counter=0
+                    for kolom in baris :
+                        if(counter == banyak_kolom -1) :
+                            temp = temp + str(kolom)
+                        else:
+                            temp = temp + str(kolom) + ";"
+                        counter = counter + 1
+                    f.write(temp + '\n')
+            with open(os.path.join(temp_dir, "riwayat.csv"), 'w') as f:
+                for baris in MATRIKS_RIWAYAT:
+                    temp = ""
+                    banyak_kolom = 0
+                    for kolom in baris :
+                        banyak_kolom = banyak_kolom + 1
+                    counter=0
+                    for kolom in baris :
+                        if(counter == banyak_kolom -1) :
+                            temp = temp + str(kolom)
+                        else:
+                            temp = temp + str(kolom) + ";"
+                        counter = counter + 1
+                    f.write(temp + '\n')
+            with open(os.path.join(temp_dir, "user.csv"), 'w') as f:
+                for baris in MATRIKS_USER:
+                    temp = ""
+                    banyak_kolom = 0
+                    for kolom in baris :
+                        banyak_kolom = banyak_kolom + 1
+                    counter=0
+                    for kolom in baris :
+                        if(counter == banyak_kolom -1) :
+                            temp = temp + str(kolom)
+                        else:
+                            temp = temp + str(kolom) + ";"
+                        counter = counter + 1
+                    f.write(temp + '\n')
+            print("Save sukses!")
+            break

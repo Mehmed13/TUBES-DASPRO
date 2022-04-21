@@ -1,3 +1,4 @@
+from modul.F02 import *
 from modul.F03 import *
 from modul.F04 import *
 from modul.F05 import *
@@ -10,7 +11,9 @@ from modul.F11 import *
 from modul.F12 import *
 from modul.F13 import *
 from modul.F14 import *
+from modul.F15 import *
 from modul.F16 import *
+from modul.F17 import *
 from modul.pecah import *
 from modul.tictactoe import *
 from modul.kerangajaib import *
@@ -20,17 +23,13 @@ import argparse
 
 #ALGORIMA MAIN
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("foldername",type=str)
-    try:
-        args = parser.parse_args()
-    except:
-        print("Tidak ada nama folder yang diberikan!")
-    if checkFolder(args.foldername):
-        datagameUTAMA = csv_to_matrix(args.foldername,"game.csv")            
-        datakepemilikanUTAMA = csv_to_matrix(args.foldername, "kepemilikan.csv")
-        datauserUTAMA = csv_to_matrix(args.foldername, "user.csv")
-        datariwayatUTAMA = csv_to_matrix(args.foldername, "riwayat.csv")
+    
+    load_dir = load()
+    if load_dir != "":
+        datagameUTAMA = csv_to_matrix(load_dir,"game.csv")            
+        datakepemilikanUTAMA = csv_to_matrix(load_dir, "kepemilikan.csv")
+        datauserUTAMA = csv_to_matrix(load_dir, "user.csv")
+        datariwayatUTAMA = csv_to_matrix(load_dir, "riwayat.csv")
         end = False
         login_success = False
         #login dulu
@@ -41,6 +40,8 @@ if __name__ == "__main__":
             else:
                 user_id, role = login(datauserUTAMA)
                 login_success = True
+        #register
+
 
         #Masuk Toko
         cmd = input(">>> Masukkan Command: ")
@@ -123,11 +124,20 @@ if __name__ == "__main__":
                 print()
                 cmd = input(">>> Masukkan Command: ")
             elif(cmd == "exit"):
-                end=True
+                func_exit(datagameUTAMA, datakepemilikanUTAMA, datariwayatUTAMA, datauserUTAMA)
+            elif(cmd == "register"):
+                if (role == "admin"):
+                    register(datauserUTAMA)
+                else:
+                    print("Maaf kamu tidak memiliki izin untuk menjalankan perintah berikut")
+                cmd = input(">>> Masukkan Command: ")
+            elif(cmd == "save"):
+                save(datagameUTAMA, datakepemilikanUTAMA, datariwayatUTAMA, datauserUTAMA)
+                cmd = input(">>> Masukkan Command:")
             else:
                 print("Maaf command yang anda masukkan tidak tersedia pada aplikasi BNMO!")
                 cmd = input(">>> Masukkan Command: ")
         print("Terima kasih telah berkunjung ke BNMO!")
     else:
-        print(f'Folder "{args.foldername}" tidak ditemukan.')
+        print("Maaf, setup tidak sesuai.")
 

@@ -28,7 +28,10 @@ def skemaasc(datagame,banyak_baris,atr): #Memproses skema ascending (Menurun)
         for Pass in range(1, banyak_baris-1):
             IMin = Pass
             for i in range(Pass+1,banyak_baris):
-                if atr != "":#Sorting berdasarkan harga atau tahun    
+                if atr == "": #sorting berdasarkan ID
+                    if datagame[i][column] < datagame[IMin][column]:
+                        IMin=i
+                else:#Sorting berdasarkan harga atau tahun    
                     if float(datagame[i][column]) < float(datagame[IMin][column]):
                         IMin=i
             Temp = datagame[IMin]
@@ -45,6 +48,8 @@ def list_game_toko(datagame):
     #Sistem tidak case-sensitive 
         skema_valid = True
         skema = input('Skema sorting: ').lower()
+
+        #Pengecekan skema sorting yang digunakan
         if skema == "tahun+" or skema == "harga+" or skema=="":
             datagame = skemaasc(datagame, banyak_baris, skema)
             cetakdata(datagame, banyak_kolom, banyak_baris)
@@ -54,4 +59,4 @@ def list_game_toko(datagame):
         else:
             print("Skema sorting tidak valid!")
             skema_valid = False
-        print(">>>")
+    print(">>>")

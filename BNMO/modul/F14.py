@@ -1,13 +1,11 @@
-import os
-from F02 import *
-from F03 import *
+from modul.F02 import *
+from modul.F03 import *
 
-def help():
+def help(role):
     print("Loading...")
 
     print('Selamat datang di antarmuka "Binomo"')
 
-    role = input("Masukkan role : ")
     if role == "admin":
         print("============ HELP ============")
         print("1. register - Untuk melakukan registrasi user baru")

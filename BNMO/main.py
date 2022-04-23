@@ -25,7 +25,11 @@ import argparse
 if __name__ == "__main__":
     
     load_dir = load()
-    if load_dir != "":
+    if load_dir == None:
+        pass
+    elif load_dir == "":
+        print("Maaf, setup tidak sesuai.")
+    else:
         datagameUTAMA = csv_to_matrix(load_dir,"game.csv")            
         datakepemilikanUTAMA = csv_to_matrix(load_dir, "kepemilikan.csv")
         datauserUTAMA = csv_to_matrix(load_dir, "user.csv")
@@ -134,9 +138,11 @@ if __name__ == "__main__":
             elif(cmd == "save"):
                 save(datagameUTAMA, datakepemilikanUTAMA, datariwayatUTAMA, datauserUTAMA)
                 cmd = input(">>> Masukkan Command:")
+            elif (cmd=="help"):
+                help(role)
+                cmd = input("Masukkan Command: ")
             else:
                 print("Maaf command yang anda masukkan tidak tersedia pada aplikasi BNMO!")
                 cmd = input(">>> Masukkan Command: ")
         print("Terima kasih telah berkunjung ke BNMO!")
-    else:
-        print("Maaf, setup tidak sesuai.")
+

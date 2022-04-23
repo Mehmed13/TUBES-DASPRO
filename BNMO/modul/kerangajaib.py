@@ -33,7 +33,6 @@ quotes_kerang_ajaib = ["Ya","Tidak",
     "tu baa?",
     "awak tanyo ka gaek lu",
     "cek kerang sebelah",
-    "tanya bapak kao la",
     "wes turu aku ms",
     "masa gitu aj gk tau:/",
     "yoi maszehhhh",
@@ -63,7 +62,8 @@ quotes_kerang_ajaib = ["Ya","Tidak",
     "good enough",
     "you wish",
     "whatever, who cares",
-    "GPP"    
+    "GPP",
+    ""    
     ]
 def LCG(x):
     a = 11

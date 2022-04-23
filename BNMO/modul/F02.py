@@ -1,5 +1,5 @@
-from unicodedata import name
 from modul.pecah import * 
+from modul.cipher import *
 
 def register(datauser):
     nama = input("Masukkan nama user baru:")
@@ -12,7 +12,7 @@ def register(datauser):
             exist = True
             
     if exist != True: #jika belum ada maka akan register dan memasukkan ke dalam matriks
-        data = [str(max(datauser) + 1), username, nama, password, "User", "0"]
+        data = [str(length(datauser)), username, nama, ciphered(password) , "user", "0"]
         datauser += [data]
         print("Selamat, " + username + " telah berhasil diregistrasikan.")
     else:

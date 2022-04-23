@@ -1,5 +1,4 @@
 import os
-from unicodedata import name
 from modul.pecah import * 
 
 def save(MATRIKS_GAME, MATRIKS_KEPEMILIKAN, MATRIKS_RIWAYAT, MATRIKS_USER):
